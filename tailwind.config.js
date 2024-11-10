@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        dm_sans: ["DM Sans", "serif"],
+       'dm-sans': ["DM Sans", "serif"],
         montserrat: ["Montserrat", "sans-serif"],
       },
       screens: {
@@ -25,6 +25,7 @@ export default {
         blue: {
           1: "#2B3674",
           2: "#A3AED0",
+          3:'#E0E5F2'
         },
         white: {
           1: "#FFF",
