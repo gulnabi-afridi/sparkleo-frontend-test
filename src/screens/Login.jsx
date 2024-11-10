@@ -16,9 +16,9 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-2">
+    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
       {/* 1st col  */}
-      <div className="w-full bg-white-1 py-6">
+      <div className="w-full bg-white-1 lg:px-0 px-4 py-6">
         <div className="w-full h-full flex flex-col justify-between mx-auto max-w-[410px]">
           {/* back btn --> */}
           <button className="flex justify-start items-center">
@@ -28,7 +28,7 @@ const Login = () => {
             </p>
           </button>
           {/* login form --> */}
-          <form className="w-full flex gap-8 flex-col">
+          <form className="w-full flex gap-5 csm:gap-8 flex-col">
             <div className="flex flex-col gap-1 items-start">
               <h2 className="text-[36px] text-brnad-1 font-dm-sans font-semibold">
                 Sign In
@@ -37,7 +37,7 @@ const Login = () => {
                 Enter your email and password to sign in!
               </p>
             </div>
-            <div className="w-full my-4 justify-center items-center  grid grid-cols-[1fr,50px,1fr]">
+            <div className="w-full justify-center items-center  grid grid-cols-[1fr,50px,1fr]">
               <div className="w-full h-[1px] bg-blue-3"></div>
               <div className="w-full flex justify-center items-center">
                 <p className="text-[14px] text-blue-2 font-medium font-dm-sans">
@@ -65,15 +65,15 @@ const Login = () => {
             {/* password input  */}
             <div className="w-full flex flex-col gap-2">
               <label
-                htmlFor="email"
+                htmlFor="password"
                 className="text-[14px] flex text-blue-1 font-medium font-dm-sans"
               >
-                Email <span className="text-brnad-1">*</span>{" "}
+                Password <span className="text-brnad-1">*</span>{" "}
               </label>
               <div className="w-full relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  id="email"
+                  id="password"
                   minLength={8}
                   required
                   placeholder="Min. 8 characters"
@@ -116,13 +116,14 @@ const Login = () => {
               </Link>
             </div>
           </form>
-          <p className="text-blue-2 text-[14px] text-center font-medium font-dm-sans">
+          <p className="text-blue-2 lg:block hidden text-[14px] text-center font-medium font-dm-sans">
             © 2023 Spark Drive. All Rights Reserved.{" "}
           </p>
+          <p className="lg:hidden block"></p>
         </div>
       </div>
       {/* 2nd col  */}
-      <div className="w-full h-full py-6 bg-brnad-1 rounded-bl-[200px]">
+      <div className="w-full hidden lg:flex py-3 lg:py-6 bg-brnad-1 lg:px-0 px-4 rounded-bl-[0px] lg:rounded-bl-[200px]">
         <div className="w-full h-full max-w-[410px] flex flex-col justify-between mx-auto">
           <div></div>
           <div className="flex flex-col gap-8">
@@ -132,7 +133,7 @@ const Login = () => {
                 Spark
               </button>
             </div>
-            <div className="w-full gap-1 border-opacity-20 max-w-[470px] py-6 border-[2px] border-white-1 rounded-[26px] flex flex-col justify-center items-center">
+            <div className="w-full gap-1 border-opacity-20 max-w-[470px] py-6 border-[2px] border-white-1 rounded-[26px] hidden lg:flex flex-col justify-center items-center">
               <p className="text-[17px] font-montserrat text-white-1">
                 Learn more about Air Drive on
               </p>
@@ -161,8 +162,6 @@ const Login = () => {
 };
 
 export default Login;
-
-
 
 const signNavigations = [
   {
