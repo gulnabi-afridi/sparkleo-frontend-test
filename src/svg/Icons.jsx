@@ -1,8 +1,6 @@
-export const Back = ({
-  fill = "none",
-  stroke = "",
-  className = "w-[24px] h-[24px]",
-}) => (
+import PropTypes from "prop-types";
+
+export const Back = ({ className = "w-[24px] h-[24px]" }) => (
   <svg
     className={className}
     viewBox="0 0 24 24"
@@ -16,11 +14,7 @@ export const Back = ({
   </svg>
 );
 
-export const Travel = ({
-  fill = "none",
-  stroke = "",
-  className = "w-[86px] h-[87px]",
-}) => (
+export const Travel = ({ className = "w-[86px] h-[87px]" }) => (
   <svg
     className={className}
     viewBox="0 0 86 87"
@@ -54,3 +48,19 @@ export const Travel = ({
     />
   </svg>
 );
+
+Back.propTypes = {
+  className: PropTypes.string,
+};
+
+Back.defaultProps = {
+  className: "w-[24px] h-[24px]",
+};
+
+Travel.propTypes = {
+  className: PropTypes.string,
+};
+
+Travel.defaultProps = {
+  className: "w-[86px] h-[87px]",
+};
