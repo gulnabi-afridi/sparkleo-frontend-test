@@ -2,10 +2,17 @@ import { useState } from "react";
 import * as Icons from "../svg/Icons";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import AuthAxiosInstance from "../utilities/PublicAxiosInstance";
+import { toast } from "react-toastify";
 
 const Login = () => {
   // states
   const [showPassword, setShowPassword] = useState(false);
+  const [userToken, setUserToken] = useState();
+  const [signInDetail, setSignInDetail] = useState({
+    email: "",
+    password: "",
+  });
 
   // states ends here
 
@@ -14,6 +21,38 @@ const Login = () => {
     e.preventDefault();
     setShowPassword(!showPassword);
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setSignInDetail((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await AuthAxiosInstance.post(
+        "/auth/signin",
+        signInDetail
+      );
+
+      console.log("Login successful:", response.data);
+      setUserToken(response.data.token);
+      toast.success("Login successful!");
+    } catch (error) {
+      console.error(
+        "Error during login:",
+        error.response ? error.response.data : error.message
+      );
+      console.log("Login failed. Please check your credentials.");
+      toast.error("Credentials Invalid!");
+    }
+  };
+
 
   return (
     <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-2">
@@ -28,7 +67,10 @@ const Login = () => {
             </p>
           </button>
           {/* login form --> */}
-          <form className="w-full flex gap-5 csm:gap-8 flex-col">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full flex gap-5 csm:gap-8 flex-col"
+          >
             <div className="flex flex-col gap-1 items-start">
               <h2 className="text-[36px] text-brnad-1 font-dm-sans font-semibold">
                 Sign In
@@ -57,6 +99,9 @@ const Login = () => {
               <input
                 type="email"
                 id="email"
+                name="email"
+                value={signInDetail.email}
+                onChange={handleInputChange}
                 required
                 placeholder="mail@simmmple.com"
                 className="w-full px-3 focus:outline-brnad-1 text-[14px] font-dm-sans text-blue-1 placeholder:text-blue-2 font-normal min-h-[50px] rounded-[16px] border-[1px] border-blue-3 bg-transparent"
@@ -75,7 +120,10 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   minLength={8}
+                  name="password"
+                  value={signInDetail.password}
                   required
+                  onChange={handleInputChange}
                   placeholder="Min. 8 characters"
                   className="w-full px-3 focus:outline-brnad-1 text-[14px] font-dm-sans text-blue-1 placeholder:text-blue-2 font-normal min-h-[50px] rounded-[16px] border-[1px] border-blue-3 bg-transparent"
                 />
@@ -162,6 +210,8 @@ const Login = () => {
 };
 
 export default Login;
+
+
 
 const signNavigations = [
   {
